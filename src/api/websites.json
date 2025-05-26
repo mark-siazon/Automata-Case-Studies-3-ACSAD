@@ -1,0 +1,112 @@
+{
+  "websites": [
+    {
+      "title": "Acads Case Studies",
+      "url": "https://acads-case-studies-automata.vercel.app/",
+      "description": "A Windows XP-inspired desktop theme that creatively showcases the case studies in a nostalgic, visually engaging format.",
+      "techStack": ["AstroJS", "Tailwind CSS", "TypeScript", "ReactJS", "CSS"],
+      "authors": [
+        { "surname": "BALUYUT" },
+        { "surname": "SIAZON" },
+        { "surname": "VILLAROSA" }
+      ],
+      "imageUrl": "/web-card/SIAZON.png"
+    },
+    {
+      "title": "AutoEye",
+      "url": "https://autoeye-e6aacf47e9eb.herokuapp.com/index.php",
+      "description": "",
+      "techStack": ["PHP", "JavaScript", "Bootstrap", "HTML", "CSS"],
+      "authors": [
+        { "surname": "CABUS" },
+        { "surname": "STA. MARIA" },
+        { "surname": "TEMPRA" }
+      ],
+      "imageUrl": "/web-card/CABUS.png"
+    },
+    {
+      "title": "Automata JS Study",
+      "url": "https://automata-case-study-javascript.vercel.app",
+      "description": "",
+      "techStack": ["JavaScript", "Tailwind CSS", "HTML", "CSS"],
+      "authors": [
+        { "surname": "BALAORO" },
+        { "surname": "BERINGUEL" },
+        { "surname": "BUSCATO" }
+      ],
+      "imageUrl": "/web-card/BALAORO.png"
+    },
+    {
+      "title": "SeqSense [Android App]",
+      "url": "https://drive.google.com/file/d/15vcdAvXq14AYNYIMPywCu2gh0y4-7rIe/view",
+      "description": "",
+      "techStack": ["Flutter"],
+      "authors": [
+        { "surname": "GARCIA" },
+        { "surname": "PAPA" },
+        { "surname": "MAGUDDAYAO" }
+      ],
+      "imageUrl": "/web-card/GARCIA.png"
+    },
+    {
+      "title": "NumberSequenceV3 [Android App]",
+      "url": "https://drive.google.com/drive/folders/1feUH1IizHIVjSiBy_r6KR-7Zgcg2Qjqt",
+      "description": "",
+      "techStack": ["Flutter"],
+      "authors": [
+        { "surname": "MAGTAJAS" },
+        { "surname": "BAUTISTA" },
+        { "surname": "ALTO" }
+      ],
+      "imageUrl": "/web-card/MAGTAJAS.png"
+    },
+    {
+      "title": "Case Study Beatonerra",
+      "url": "https://casestudybeatonetarra.onrender.com/",
+      "description": "",
+      "techStack": ["PHP", "JavaScript", "Bootstrap", "HTML", "CSS"],
+      "authors": [
+        { "surname": "LANDERO" },
+        { "surname": "CUIZON" },
+        { "surname": "ORTUOSTE" }
+      ],
+      "imageUrl": "/web-card/LANDERO.png"
+    },
+    {
+      "title": "Cellrhy [GitHub Repo]",
+      "url": "https://github.com/cellrhy/Automata_CaseStudy_Final.git",
+      "description": "",
+      "techStack": ["PHP", "JavaScript", "Bootstrap", "HTML", "CSS"],
+      "authors": [
+        { "surname": "FERNANDEZ" },
+        { "surname": "ORTEGA" },
+        { "surname": "SICAT" }
+      ],
+      "imageUrl": "/web-card/FERNANDEZ.png"
+    },
+    {
+      "title": "Automata Case Study",
+      "url": "https://automata-case-study.vercel.app/",
+      "description": "",
+      "techStack": ["PHP", "JavaScript", "Bootstrap", "HTML", "CSS"],
+      "authors": [
+        { "surname": "FAUSTINO" },
+        { "surname": "HINGCO" },
+        { "surname": "VILLENA" }
+      ],
+      "imageUrl": "/web-card/HINGCO.png"
+    },
+    {
+      "title": "MathHub",
+      "url": "https://mathhub.flutterflow.app/",
+      "description": "",
+      "techStack": ["Flutter", "FlutterFlow"],
+      "authors": [
+        { "surname": "CORPUZ" },
+        { "surname": "FORTE" },
+        { "surname": "LITA" }
+      ],
+      "imageUrl": "/web-card/FORTE.png"
+    }
+  ]
+}

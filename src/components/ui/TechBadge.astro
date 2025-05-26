@@ -1,0 +1,29 @@
+---
+import { techColors } from "../../utils/techColors";
+
+interface Props {
+  tech: string;
+  size?: "sm" | "md";
+}
+
+const { tech, size = "md" } = Astro.props;
+const colors = techColors[tech] || techColors.default;
+
+const sizes = {
+  sm: "text-xs px-2 py-0.5",
+  md: "text-sm px-3 py-1",
+};
+---
+
+<span
+  class:list={[
+    colors.bg + "/30",
+    colors.text,
+    "backdrop-blur border border-white/30 shadow-sm",
+    sizes[size],
+    "rounded-full font-medium inline-flex items-center",
+  ]}
+  role="listitem"
+>
+  {tech}
+</span>

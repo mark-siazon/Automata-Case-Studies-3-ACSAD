@@ -1,0 +1,261 @@
+---
+import type { WebsiteProps } from "../types";
+import TechBadge from "./ui/TechBadge.astro";
+import Button from "./ui/Button.astro";
+
+const {
+  title,
+  url,
+  description,
+  techStack,
+  authors,
+  imageUrl,
+  index,
+  maxIndex,
+} = Astro.props as WebsiteProps & { maxIndex: number };
+---
+
+<div
+  class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden justify-center items-center z-50"
+  id={`dialog-overlay-${index}`}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`dialog-title-${index}`}
+  aria-describedby={`dialog-description-${index}`}
+>
+  <div
+    class="dialog-scroll bg-bg-dialog/30 backdrop-blur-xl border border-white/30 shadow-2xl rounded-2xl w-[90%] max-w-2xl max-h-[90vh] overflow-y-auto relative"
+    role="document"
+  >
+    <!-- Left Arrow Button -->
+    {
+      index > 0 && (
+        <button
+          class="absolute left-2 top-1/2 -translate-y-1/2 bg-primary/30 hover:bg-primary/60 text-accent p-2 rounded-full shadow-lg border border-primary/40 backdrop-blur z-20 transition-transform hover:scale-110"
+          aria-label="Previous dialog"
+          onclick={`if(window['showWebsiteDialog${index - 1}']) window['showWebsiteDialog${index - 1}']();`}
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+        </button>
+      )
+    }
+    <!-- Right Arrow Button -->
+    {
+      index < maxIndex && (
+        <button
+          class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary/30 hover:bg-primary/60 text-accent p-2 rounded-full shadow-lg border border-primary/40 backdrop-blur z-20 transition-transform hover:scale-110"
+          aria-label="Next dialog"
+          onclick={`if(window['showWebsiteDialog${index + 1}']) window['showWebsiteDialog${index + 1}']();`}
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </button>
+      )
+    }
+    <Button
+      variant="text"
+      size="sm"
+      class="absolute top-2 right-2 text-white cursor-pointer hover:scale-95 hover:text-white bg-white/25 backdrop-blur-lg border border-white/30 shadow-2xl rounded-2xl p-1"
+      id={`close-dialog-${index}`}
+      aria-label="Close dialog"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2.5"
+        stroke="currentColor"
+        class="w-5 h-5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </Button>
+
+    <div class="p-8">
+      {
+        imageUrl && (
+          <img
+            src={imageUrl}
+            alt={`Screenshot of ${title}`}
+            class="w-full h-72 object-cover rounded-lg mb-6"
+            loading="lazy"
+          />
+        )
+      }
+
+      <h2
+        id={`dialog-title-${index}`}
+        class="text-2xl font-semibold mb-6 text-white drop-shadow-lg"
+      >
+        {title}
+      </h2>
+
+      <div class="mb-6">
+        <h3 class="text-lg font-medium text-gray-100 mb-2">Overview</h3>
+        <p id={`dialog-description-${index}`} class="text-gray-200 drop-shadow">
+          {description}
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="text-lg font-medium text-gray-100 mb-2">Tech Stack</h3>
+        <div
+          class="flex flex-wrap gap-2"
+          role="list"
+          aria-label="Technologies used"
+        >
+          {techStack.map((tech) => <TechBadge tech={tech} />)}
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="text-lg font-medium text-gray-100 mb-2">Authors</h3>
+        <div class="flex flex-wrap gap-2" role="list" aria-label="Authors">
+          {
+            authors.map((author, index) => (
+              <span class="flex items-center text-gray-200" role="listitem">
+                {index > 0 && (
+                  <span class="mx-2" aria-hidden="true">
+                    •
+                  </span>
+                )}
+                <span class="font-semibold uppercase">{author.surname}</span>
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <Button
+        variant="primary"
+        size="lg"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto"
+      >
+        Visit Website
+      </Button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ index }}>
+  // Dialog functionality
+  const dialog = document.getElementById(`dialog-overlay-${index}`);
+  const closeButton = document.getElementById(`close-dialog-${index}`);
+
+  function showDialog() {
+    if (dialog) {
+      dialog.classList.remove("hidden");
+      dialog.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      // Focus trap
+      const focusableElements = dialog.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+      if (firstFocusable) {
+        firstFocusable.focus();
+      }
+      // Handle keyboard navigation
+      dialog.addEventListener("keydown", handleKeydown);
+    }
+  }
+
+  function hideDialog() {
+    if (dialog) {
+      dialog.classList.remove("flex");
+      dialog.classList.add("hidden");
+      document.body.style.overflow = "auto";
+      dialog.removeEventListener("keydown", handleKeydown);
+    }
+  }
+
+  function handleKeydown(e) {
+    if (e instanceof KeyboardEvent) {
+      if (e.key === "Escape") {
+        hideDialog();
+      }
+      if (e.key === "Tab") {
+        const focusableElements = dialog.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable.focus();
+          }
+        }
+      }
+      if (e.key === "ArrowLeft") {
+        // Show previous dialog if exists
+        const prevIndex = Number(index) - 1;
+        if (window[`showWebsiteDialog${prevIndex}`]) {
+          hideDialog();
+          setTimeout(() => window[`showWebsiteDialog${prevIndex}`](), 100);
+        }
+      }
+      if (e.key === "ArrowRight") {
+        // Show next dialog if exists
+        const nextIndex = Number(index) + 1;
+        if (window[`showWebsiteDialog${nextIndex}`]) {
+          hideDialog();
+          setTimeout(() => window[`showWebsiteDialog${nextIndex}`](), 100);
+        }
+      }
+    }
+  }
+
+  if (dialog && closeButton) {
+    // Close dialog when clicking outside
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) {
+        hideDialog();
+      }
+    });
+    closeButton.addEventListener("click", hideDialog);
+    // Make dialog globally accessible with index
+    window[`showWebsiteDialog${index}`] = showDialog;
+  }
+</script>

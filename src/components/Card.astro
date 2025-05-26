@@ -1,0 +1,86 @@
+---
+import type { WebsiteProps } from "../types";
+import TechBadge from "./ui/TechBadge.astro";
+
+const { title, url, description, techStack, authors, imageUrl, index } =
+  Astro.props as WebsiteProps;
+---
+
+<div class="relative">
+  <article
+    class="relative bg-bg-card/30 backdrop-blur-lg border border-white/30 ring-1 ring-white/10 shadow-2xl shadow-black/30 rounded-2xl transition-all duration-200 hover:shadow-3xl hover:ring-2 hover:ring-blue-400/40 hover:-translate-y-1 cursor-pointer overflow-hidden flex flex-col h-full min-h-[420px] max-h-[480px]"
+    data-url={url}
+    data-index={index}
+    role="article"
+    tabindex="0"
+  >
+    <!-- Gradient overlay for glass depth -->
+    <div
+      class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-white/10 to-transparent opacity-70"
+    >
+    </div>
+    <div class="relative p-6 z-10 flex flex-col flex-1">
+      {
+        imageUrl && (
+          <img
+            src={imageUrl}
+            alt={`Screenshot of ${title}`}
+            class="w-full h-48 object-cover rounded-lg mb-2"
+            loading="lazy"
+          />
+        )
+      }
+      <h3 class="text-xl font-semibold mt-4 mb-2 text-white drop-shadow-lg">
+        {title}
+      </h3>
+      <p class="text-gray-100 text-sm mb-4 drop-shadow line-clamp-3 flex-1">
+        {description}
+      </p>
+
+      <div
+        class="flex flex-wrap gap-2 mb-4"
+        role="list"
+        aria-label="Technologies used"
+      >
+        {techStack.map((tech) => <TechBadge tech={tech} size="sm" />)}
+      </div>
+
+      <div
+        class="flex flex-wrap gap-2 text-sm text-gray-200 mt-auto"
+        role="list"
+        aria-label="Authors"
+      >
+        {
+          authors.map((author, index) => (
+            <span class="flex items-center" role="listitem">
+              {index > 0 && (
+                <span class="mx-1" aria-hidden="true">
+                  •
+                </span>
+              )}
+              <span class="font-semibold uppercase">{author.surname}</span>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </article>
+</div>
+
+<script>
+  // Add keyboard navigation
+  document.querySelectorAll('[role="article"]').forEach((card) => {
+    card.addEventListener("keydown", function (e) {
+      if (e instanceof KeyboardEvent && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        const index = card.getAttribute("data-index");
+        if (index !== null) {
+          const showDialog = (window as any)[`showWebsiteDialog${index}`];
+          if (typeof showDialog === "function") {
+            showDialog();
+          }
+        }
+      }
+    });
+  });
+</script>

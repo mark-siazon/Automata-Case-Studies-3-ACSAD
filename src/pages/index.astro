@@ -1,12 +1,90 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import WebsiteCard from "../components/Card.astro";
+import WebsiteDialog from "../components/Dialog.astro";
+import Layout from "../layouts/Layout.astro";
 import "../styles/globals.css";
+import websitesData from "../api/websites.json";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const { websites } = websitesData;
+const maxIndex = websites.length - 1;
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="III-ACSAD | Case Study Compilation">
+  <main class="container mx-auto px-4 py-8">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      role="list"
+      aria-label="Website case studies"
+    >
+      {
+        websites.map((website, index) => (
+          <WebsiteCard {...website} index={index} />
+        ))
+      }
+    </div>
+
+    {
+      websites.map((website, index) => (
+        <WebsiteDialog {...website} index={index} maxIndex={maxIndex} />
+      ))
+    }
+  </main>
+
+  <script>
+    // Add click event listeners to all cards
+    document.querySelectorAll("[data-url]").forEach((card) => {
+      card.addEventListener("click", () => {
+        const index = card.getAttribute("data-index");
+        if (index !== null) {
+          const showDialog = (window as any)[`showWebsiteDialog${index}`];
+          if (typeof showDialog === "function") {
+            showDialog();
+          }
+        }
+      });
+    });
+
+    // Add loading state
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
 </Layout>
+
+<style>
+  /* Loading state styles */
+  body {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  body.loaded {
+    opacity: 1;
+  }
+
+  /* Improve focus styles */
+  :focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  /* Improve scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+</style>

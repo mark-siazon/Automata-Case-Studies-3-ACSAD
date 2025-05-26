@@ -1,22 +1,103 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="min-h-screen h-screen bg-no-repeat bg-cover bg-center bg-fixed"
+    style="background-image: url('/Background.jpg');"
+  >
+    <header class="relative z-20">
+      <div
+        class="relative max-w-screen mx-auto my-5 px-4 py-6 rounded-xl bg-primary/30 backdrop-blur-lg border-b-2 border-white/25 text-center shadow-md overflow-hidden"
+      >
+        <!-- Gradient overlay for glass effect -->
+        <div
+          class="pointer-events-none absolute inset-0 rounded-b-2xl bg-gradient-to-br from-primary/40 via-accent/20 to-transparent opacity-80"
+        >
+        </div>
+        <h1
+          class="relative text-4xl md:text-5xl font-heading font-bold text-accent drop-shadow-lg z-10 tracking-tight"
+        >
+          3 - ACSAD | Case Study Compilation
+        </h1>
+
+        <p class="text-white text-md">
+          A collection of websites from III-ACSAD students submmited to
+          <span class="text-purple-300">Prof. Lester Diampoc</span>
+        </p>
+      </div>
+      <!-- Subtle divider -->
+      <div
+        class="h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-60"
+      >
+      </div>
+    </header>
+
+    <main class="relative z-50 mt-5">
+      <slot />
+    </main>
+    <!-- Optionally, add a semi-transparent overlay for readability -->
+    <div class="fixed inset-0 bg-black/40 -z-0 pointer-events-none"></div>
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    font-feature-settings: "ss01", "cv01", "cv02", "cv03";
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1,
+  h2,
+  h3,
+  .font-heading {
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.5em;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
 </style>
