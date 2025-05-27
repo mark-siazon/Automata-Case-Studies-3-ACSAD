@@ -17,7 +17,7 @@ A modern Single Page Application (SPA) built with [Astro](https://astro.build/) 
 
 ```
 ├── src/
-│   ├── api/websites.json         # Website and author data (JSON)
+│   ├── data/websites.json         # Website and author data (JSON)
 │   ├── components/
 │   │   ├── Card.astro           # Website card component
 │   │   ├── Dialog.astro         # Website dialog overlay component

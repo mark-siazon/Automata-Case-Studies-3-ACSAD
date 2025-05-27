@@ -41,7 +41,8 @@ const { title } = Astro.props;
         </h1>
 
         <p class="text-white text-md">
-          A collection of websites from III-ACSAD students submmited to
+          A collection of websites from III-ACSAD students (S.Y. 2024-2025)
+          submmited to
           <span class="text-purple-300">Prof. Lester Diampoc</span>
         </p>
       </div>
@@ -52,10 +53,31 @@ const { title } = Astro.props;
       </div>
     </header>
 
-    <main class="relative z-50 mt-5">
+    <main class="relative z-10">
       <slot />
     </main>
-    <!-- Optionally, add a semi-transparent overlay for readability -->
+    <footer class="relative z-1 mt-12">
+      <div
+        class="max-w-fit p-6 rounded-t-xl bg-primary/30 backdrop-blur-lg border-t border-primary/40 shadow-md overflow-hidden flex flex-col items-start ml-0"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 rounded-t-2xl bg-gradient-to-tr from-primary/40 via-accent/20 to-transparent opacity-80"
+        >
+        </div>
+        <p
+          class="relative z-10 text-accent font-heading text-lg font-semibold drop-shadow transition-colors"
+        >
+          Compiled by
+          <a
+            href="https://github.com/mark-siazon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-primary transition-colors hover:no-underline hover:text-purple-300"
+            >Siazon, Mark</a
+          >
+        </p>
+      </div>
+    </footer>
     <div class="fixed inset-0 bg-black/40 -z-0 pointer-events-none"></div>
   </body>
 </html>
