@@ -178,6 +178,11 @@ const {
   const closeButton = document.getElementById(`close-dialog-${index}`);
 
   function showDialog() {
+    // Hide all dialogs first
+    document.querySelectorAll("[id^='dialog-overlay-']").forEach((dlg) => {
+      dlg.classList.remove("flex");
+      dlg.classList.add("hidden");
+    });
     if (dialog) {
       dialog.classList.remove("hidden");
       dialog.classList.add("flex");
@@ -191,8 +196,8 @@ const {
       if (firstFocusable) {
         firstFocusable.focus();
       }
-      // Handle keyboard navigation
-      dialog.addEventListener("keydown", handleKeydown);
+      // Handle keyboard navigation globally
+      window.addEventListener("keydown", handleKeydown);
     }
   }
 
@@ -201,7 +206,7 @@ const {
       dialog.classList.remove("flex");
       dialog.classList.add("hidden");
       document.body.style.overflow = "auto";
-      dialog.removeEventListener("keydown", handleKeydown);
+      window.removeEventListener("keydown", handleKeydown);
     }
   }
 
