@@ -58,7 +58,7 @@
         { "surname": "BAUTISTA" },
         { "surname": "ALTO" }
       ],
-      "imageUrl": "/web-card/MAGTAJAS.png"
+      "imageUrl": "/web-card/ALTO.png"
     },
     {
       "title": "Case Study Beatonerra",
@@ -73,8 +73,8 @@
       "imageUrl": "/web-card/LANDERO.png"
     },
     {
-      "title": "Cellrhy [GitHub Repo]",
-      "url": "https://github.com/cellrhy/Automata_CaseStudy_Final.git",
+      "title": "Fliptop | Case Study Compilation",
+      "url": "https://cell-rhy-automata.vercel.app/",
       "description": "",
       "techStack": ["PHP", "JavaScript", "Bootstrap", "HTML", "CSS"],
       "authors": [
@@ -82,7 +82,7 @@
         { "surname": "ORTEGA" },
         { "surname": "SICAT" }
       ],
-      "imageUrl": "/web-card/FERNANDEZ.png"
+      "imageUrl": "/web-card/ORTEGA.png"
     },
     {
       "title": "Automata Case Study",
@@ -107,6 +107,38 @@
         { "surname": "LITA" }
       ],
       "imageUrl": "/web-card/FORTE.png"
+    },
+    {
+      "title": "Automatapedia",
+      "url": "https://automatapedia.vercel.app/",
+      "description": "",
+      "techStack": ["ReactJS", "TypeScript", "HTML", "CSS"],
+      "authors": [
+        { "surname": "ADIZON" },
+        { "surname": "BARGABINO" },
+        { "surname": "OLIMBERIO" }
+      ],
+      "imageUrl": "/web-card/ADIZON.png"
+    },
+    {
+      "title": "Case Studies Compilation",
+      "url": "https://rivera-ton-ogan-tenorio-56face23956b.herokuapp.com/",
+      "description": "Experience the fusion of theory and technology in this interactive Turing Machine-powered web app!",
+      "techStack": ["HTML", "CSS", "PHP", "Bootstrap"],
+      "authors": [
+        { "surname": "RIVERA" },
+        { "surname": "TON-OGAN" },
+        { "surname": "TENORIO" }
+      ],
+      "imageUrl": "/web-card/RIVERA.png"
+    },
+    {
+      "title": "Case Studies Compilation [Android App]",
+      "url": "https://drive.google.com/file/d/1EtcvY_m7i-oEmuIsKRQqGRK8GbKthajH/view?usp=sharing",
+      "description": "",
+      "techStack": ["Android Studio"],
+      "authors": [{ "surname": "CAASI" }, { "surname": "COLARINA" }],
+      "imageUrl": "/web-card/CAASI.png"
     }
   ]
 }
