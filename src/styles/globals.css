@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-@theme {
-}
+/* Define the color variables */
 :root {
   /* Base (shared) theme colors */
   --color-bg: hsla(230, 38%, 16%, 1);
@@ -21,12 +20,50 @@
   /* ...add more as needed */
 }
 
+/* Dark mode overrides */
 .dark {
   /* Only override what actually changes in dark mode */
   --color-overlay: hsla(235, 33%, 35%, 0.7);
   --color-react-text: hsla(231, 96%, 86%, 1);
   --color-vue-text: hsla(234, 83%, 74%, 1);
   /* ...add more as needed */
+}
+
+/* Tailwind v4 theme definition */
+@theme {
+  .light {
+    --bg: var(--color-bg);
+    --bg-card: var(--color-bg-card);
+    --bg-dialog: var(--color-bg-dialog);
+    --text: var(--color-text);
+    --primary: var(--color-primary);
+    --primary-hover: var(--color-primary-hover);
+    --secondary: var(--color-secondary);
+    --accent: var(--color-accent);
+    --border: var(--color-border);
+    --overlay: var(--color-overlay);
+    --react: var(--color-react);
+    --react-text: var(--color-react-text);
+    --vue: var(--color-vue);
+    --vue-text: var(--color-vue-text);
+  }
+
+  .dark {
+    --bg: var(--color-bg);
+    --bg-card: var(--color-bg-card);
+    --bg-dialog: var(--color-bg-dialog);
+    --text: var(--color-text);
+    --primary: var(--color-primary);
+    --primary-hover: var(--color-primary-hover);
+    --secondary: var(--color-secondary);
+    --accent: var(--color-accent);
+    --border: var(--color-border);
+    --overlay: var(--color-overlay);
+    --react: var(--color-react);
+    --react-text: var(--color-react-text);
+    --vue: var(--color-vue);
+    --vue-text: var(--color-vue-text);
+  }
 }
 
 body {
