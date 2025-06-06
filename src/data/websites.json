@@ -10,7 +10,7 @@
         { "surname": "SIAZON" },
         { "surname": "VILLAROSA" }
       ],
-      "imageUrl": "/web-card/SIAZON.png"
+      "imageUrl": "/web-card/SIAZON.webp"
     },
     {
       "title": "AutoEye",
@@ -22,7 +22,7 @@
         { "surname": "STA. MARIA" },
         { "surname": "TEMPRA" }
       ],
-      "imageUrl": "/web-card/CABUS.png"
+      "imageUrl": "/web-card/CABUS.webp"
     },
     {
       "title": "Automata JS Study",
@@ -34,7 +34,7 @@
         { "surname": "BERINGUEL" },
         { "surname": "BUSCATO" }
       ],
-      "imageUrl": "/web-card/BALAORO.png"
+      "imageUrl": "/web-card/BALAORO.webp"
     },
     {
       "title": "SeqSense [Android App]",
@@ -46,7 +46,7 @@
         { "surname": "PAPA" },
         { "surname": "MAGUDDAYAO" }
       ],
-      "imageUrl": "/web-card/GARCIA.png"
+      "imageUrl": "/web-card/GARCIA.webp"
     },
     {
       "title": "NumberSequenceV3 [Android App]",
@@ -58,7 +58,7 @@
         { "surname": "BAUTISTA" },
         { "surname": "ALTO" }
       ],
-      "imageUrl": "/web-card/ALTO.png"
+      "imageUrl": "/web-card/ALTO.webp"
     },
     {
       "title": "Case Study Beatonerra",
@@ -70,7 +70,7 @@
         { "surname": "CUIZON" },
         { "surname": "ORTUOSTE" }
       ],
-      "imageUrl": "/web-card/LANDERO.png"
+      "imageUrl": "/web-card/LANDERO.webp"
     },
     {
       "title": "Fliptop | Case Study Compilation",
@@ -82,7 +82,7 @@
         { "surname": "ORTEGA" },
         { "surname": "SICAT" }
       ],
-      "imageUrl": "/web-card/ORTEGA.png"
+      "imageUrl": "/web-card/ORTEGA.webp"
     },
     {
       "title": "Automata Case Study",
@@ -94,7 +94,7 @@
         { "surname": "HINGCO" },
         { "surname": "VILLENA" }
       ],
-      "imageUrl": "/web-card/HINGCO.png"
+      "imageUrl": "/web-card/HINGCO.webp"
     },
     {
       "title": "MathHub",
@@ -106,7 +106,7 @@
         { "surname": "FORTE" },
         { "surname": "LITA" }
       ],
-      "imageUrl": "/web-card/FORTE.png"
+      "imageUrl": "/web-card/FORTE.webp"
     },
     {
       "title": "Automatapedia",
@@ -118,7 +118,7 @@
         { "surname": "BARGABINO" },
         { "surname": "OLIMBERIO" }
       ],
-      "imageUrl": "/web-card/ADIZON.png"
+      "imageUrl": "/web-card/ADIZON.webp"
     },
     {
       "title": "Case Studies Compilation",
@@ -130,7 +130,7 @@
         { "surname": "TON-OGAN" },
         { "surname": "TENORIO" }
       ],
-      "imageUrl": "/web-card/RIVERA.png"
+      "imageUrl": "/web-card/RIVERA.webp"
     },
     {
       "title": "Case Studies Compilation [Android App]",
@@ -138,7 +138,7 @@
       "description": "",
       "techStack": ["Android Studio"],
       "authors": [{ "surname": "CAASI" }, { "surname": "COLARINA" }],
-      "imageUrl": "/web-card/CAASI.png"
+      "imageUrl": "/web-card/CAASI.webp"
     }
   ]
 }
