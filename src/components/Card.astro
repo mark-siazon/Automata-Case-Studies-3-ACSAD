@@ -8,11 +8,13 @@ const { title, url, description, techStack, authors, imageUrl, index } =
 
 <div class="relative">
   <article
-    class="relative bg-bg-card/30 backdrop-blur-lg border border-white/30 ring-1 ring-white/10 shadow-2xl shadow-black/30 rounded-2xl transition-all duration-200 hover:shadow-3xl hover:ring-2 hover:ring-blue-400/40 hover:-translate-y-1 cursor-pointer overflow-hidden flex flex-col h-full min-h-[420px] max-h-[480px]"
+    class="relative bg-bg-card/30 backdrop-blur-lg border border-white/30 ring-1 ring-white/10 shadow-2xl shadow-black/30 rounded-2xl transition-all duration-300 hover:shadow-3xl hover:ring-2 hover:ring-primary/40 hover:-translate-y-1 hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-primary/70 active:scale-[0.99] cursor-pointer overflow-hidden flex flex-col h-full min-h-[380px] xs:min-h-[420px] max-h-[480px]"
     data-url={url}
     data-index={index}
     role="article"
     tabindex="0"
+    style="view-transition-name: card-{index};"
+    aria-label={`${title} project by ${authors.map(a => a.surname).join(', ')}. Click to view details.`}
   >
     <!-- Gradient overlay for glass depth -->
     <div
@@ -25,15 +27,18 @@ const { title, url, description, techStack, authors, imageUrl, index } =
           <img
             src={imageUrl}
             alt={`Screenshot of ${title}`}
-            class="w-full h-48 object-cover rounded-lg mb-2"
+            class="w-full h-48 object-cover rounded-lg mb-2 transform transition-transform duration-500 hover:scale-105"
             loading="lazy"
+            srcset={`${imageUrl} 300w, ${imageUrl} 500w`}
+            sizes="(max-width: 640px) 300px, 500px"
+            style="view-transition-name: img-{index};"
           />
         )
       }
-      <h3 class="text-xl font-semibold mt-4 mb-2 text-white drop-shadow-lg">
+      <h3 class="text-xl font-semibold mt-4 mb-2 text-text drop-shadow-lg">
         {title}
       </h3>
-      <p class="text-gray-100 text-sm mb-4 drop-shadow line-clamp-3 flex-1">
+      <p class="text-text/90 text-sm mb-4 drop-shadow line-clamp-3 flex-1">
         {description}
       </p>
 
@@ -46,7 +51,7 @@ const { title, url, description, techStack, authors, imageUrl, index } =
       </div>
 
       <div
-        class="flex flex-wrap gap-2 text-sm text-gray-200 mt-auto"
+        class="flex flex-wrap gap-2 text-sm text-text/80 mt-auto"
         role="list"
         aria-label="Authors"
       >

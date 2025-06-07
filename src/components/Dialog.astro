@@ -109,15 +109,18 @@ const {
           <img
             src={imageUrl}
             alt={`Screenshot of ${title}`}
-            class="w-full h-72 object-cover rounded-lg mb-6"
+            class="w-full h-72 object-cover rounded-lg mb-6 transition-opacity duration-300"
             loading="lazy"
+            srcset={`${imageUrl} 480w, ${imageUrl} 800w`}
+            sizes="(max-width: 600px) 480px, 800px"
+            style="view-transition-name: img-large-{index};"
           />
         )
       }
 
       <h2
         id={`dialog-title-${index}`}
-        class="text-2xl font-semibold mb-6 text-white drop-shadow-lg"
+        class="text-2xl font-semibold mb-6 text-text drop-shadow-lg"
       >
         {title}
       </h2>
@@ -125,10 +128,10 @@ const {
       {
         description && description.trim() && (
           <div class="mb-6">
-            <h3 class="text-lg font-medium text-gray-100 mb-2">Overview</h3>
+            <h3 class="text-lg font-medium text-text mb-2">Overview</h3>
             <p
               id={`dialog-description-${index}`}
-              class="text-gray-200 drop-shadow"
+              class="text-text/90 drop-shadow"
             >
               {description}
             </p>
@@ -137,7 +140,7 @@ const {
       }
 
       <div class="mb-6">
-        <h3 class="text-lg font-medium text-gray-100 mb-2">Tech Stack</h3>
+        <h3 class="text-lg font-medium text-text mb-2">Tech Stack</h3>
         <div
           class="flex flex-wrap gap-2"
           role="list"
@@ -148,11 +151,11 @@ const {
       </div>
 
       <div class="mb-6">
-        <h3 class="text-lg font-medium text-gray-100 mb-2">Authors</h3>
+        <h3 class="text-lg font-medium text-text mb-2">Authors</h3>
         <div class="flex flex-wrap gap-2" role="list" aria-label="Authors">
           {
             authors.map((author, index) => (
-              <span class="flex items-center text-gray-200" role="listitem">
+              <span class="flex items-center text-text/90" role="listitem">
                 {index > 0 && (
                   <span class="mx-2" aria-hidden="true">
                     •
@@ -171,7 +174,7 @@ const {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        class="w-full sm:w-auto hover:text-purple-300 hover:underline hover:scale-105 transition-all duration-500 hover:animate-pulse"
+        class="w-full sm:w-auto hover:text-secondary hover:underline hover:scale-105 transition-all duration-300 hover:animate-pulse focus:ring-2 focus:ring-accent"
       >
         {
           (techStack.includes("Flutter") &&
@@ -211,6 +214,8 @@ const {
       }
       // Handle keyboard navigation globally
       window.addEventListener("keydown", handleKeydown);
+      // Announce dialog for screen readers
+      announceDialog();
     }
   }
 
@@ -266,7 +271,7 @@ const {
   }
 
   if (dialog && closeButton) {
-    // Close dialog when clicking outside
+    // <!-- Close dialog when clicking outside -->
     dialog.addEventListener("click", (e) => {
       if (e.target === dialog) {
         hideDialog();
@@ -275,5 +280,48 @@ const {
     closeButton.addEventListener("click", hideDialog);
     // Make dialog globally accessible with index
     window[`showWebsiteDialog${index}`] = showDialog;
+    
+    // Announce dialog to screen readers when opened
+    function announceDialog() {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('class', 'sr-only');
+      announcement.textContent = `Dialog for ${title} is now open. Press Escape to close.`;
+      document.body.appendChild(announcement);
+      setTimeout(() => document.body.removeChild(announcement), 1000);
+    }
+    
+    // Add touch swipe support for mobile devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    dialog.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    dialog.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      if (touchEndX < touchStartX - swipeThreshold) {
+        // Swiped left - show next dialog
+        const nextIndex = Number(index) + 1;
+        if (window[`showWebsiteDialog${nextIndex}`]) {
+          hideDialog();
+          setTimeout(() => window[`showWebsiteDialog${nextIndex}`](), 100);
+        }
+      }
+      if (touchEndX > touchStartX + swipeThreshold) {
+        // Swiped right - show previous dialog
+        const prevIndex = Number(index) - 1;
+        if (window[`showWebsiteDialog${prevIndex}`]) {
+          hideDialog();
+          setTimeout(() => window[`showWebsiteDialog${prevIndex}`](), 100);
+        }
+      }
+    }
   }
 </script>
