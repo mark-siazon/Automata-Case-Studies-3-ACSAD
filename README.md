@@ -1,6 +1,16 @@
 # III-ACSAD | Case Study Compilation
 
+<img src="cover-img.webp" alt="Cover Image" width="50%" />
+
 A modern Single Page Application (SPA) built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/), showcasing a collection of website case studies. Each card displays an overview, tech stack, and authors, with a focus on accessibility, modularity, and beautiful UI/UX.
+
+## Description
+
+This project is a curated showcase of website case studies, designed to highlight the work of students and developers. It features a modern, responsive UI with interactive dialogs, keyboard navigation, and accessibility features. The site is built for educators, students, and tech enthusiasts who want to explore real-world projects and their underlying technologies.
+
+## About
+
+This project is a curated showcase of website case studies, designed to highlight the work of students and developers. It features a modern, responsive UI with interactive dialogs, keyboard navigation, and accessibility features. The site is built for educators, students, and tech enthusiasts who want to explore real-world projects and their underlying technologies.
 
 ## Features
 
@@ -85,3 +95,7 @@ $ pnpm build # or npm run build or yarn build
 ## Contributing
 
 Pull requests and suggestions are welcome! Please open an issue or submit a PR.
+
+## Author
+
+- **Siazon, Mark** - [GitHub](https://github.com/marksiazon)
