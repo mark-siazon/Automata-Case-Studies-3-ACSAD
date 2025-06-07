@@ -12,7 +12,7 @@ const maxIndex = websites.length - 1;
 <Layout title="III-ACSAD | Case Study Compilation">
   <main class="container mx-auto px-4 py-8">
     <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      class="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
       role="list"
       aria-label="Website case studies"
     >
@@ -47,6 +47,29 @@ const maxIndex = websites.length - 1;
     // Add loading state
     window.addEventListener("load", () => {
       document.body.classList.add("loaded");
+      
+      // Animate cards on page load
+      document.querySelectorAll("[data-url]").forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add("animate-loaded");
+        }, 100 + (index * 100)); // Staggered animation
+      });
+    });
+
+    // Add View Transitions API support
+    document.addEventListener('astro:page-load', () => {
+      // This runs on every page navigation
+      document.querySelectorAll("[data-url]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const index = card.getAttribute("data-index");
+          if (index !== null) {
+            const showDialog = (window as any)[`showWebsiteDialog${index}`];
+            if (typeof showDialog === "function") {
+              showDialog();
+            }
+          }
+        });
+      });
     });
   </script>
 </Layout>
@@ -86,5 +109,21 @@ const maxIndex = websites.length - 1;
 
   ::-webkit-scrollbar-thumb:hover {
     background: #666;
+  }
+
+  /* Add view transition animations */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+  }
+
+  ::view-transition-old(card-*),
+  ::view-transition-new(card-*) {
+    animation-duration: 0.5s;
+  }
+
+  ::view-transition-old(img-*),
+  ::view-transition-new(img-*) {
+    animation-duration: 0.4s;
   }
 </style>

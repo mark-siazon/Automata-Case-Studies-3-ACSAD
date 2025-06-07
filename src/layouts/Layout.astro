@@ -13,19 +13,95 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="view-transition" content="same-origin" />
     <title>{title}</title>
+    
+    <!-- Loading indicator -->
+    <style>
+      .loading-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(to right, transparent, var(--primary), var(--accent), transparent);
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        animation: loadingBar 1.5s infinite;
+      }
+      
+      .loading .loading-indicator {
+        opacity: 1;
+      }
+      
+      @keyframes loadingBar {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+    </style>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A collection of websites and applications developed by III-ACSAD students as case studies for Automata course" />
+    <meta name="keywords" content="web development, student projects, Automata, case studies, programming" />
+    <meta name="author" content="III-ACSAD Students" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://acads-automata-case-studies.vercel.app/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="A collection of websites and applications developed by III-ACSAD students as case studies for Automata course" />
+    <meta property="og:image" content="/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://acads-automata-case-studies.vercel.app/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content="A collection of websites and applications developed by III-ACSAD students as case studies for Automata course" />
+    <meta property="twitter:image" content="/og-image.jpg" />
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "III-ACSAD Case Study Compilation",
+        "description": "A collection of websites and applications developed by III-ACSAD students as case studies for Automata course",
+        "publisher": {
+          "@type": "Organization",
+          "name": "III-ACSAD Students",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://acads-automata-case-studies.vercel.app/favicon.svg"
+          }
+        },
+        "url": "https://acads-automata-case-studies.vercel.app/"
+      }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/Background.webp" as="image" />
   </head>
   <body
     class="min-h-screen h-screen bg-no-repeat bg-cover bg-center bg-fixed"
     style="background-image: url('/Background.webp');"
   >
-    <header class="relative z-20">
+    <!-- Loading indicator -->
+    <div class="loading-indicator"></div>
+    
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-text focus:outline-none focus:rounded">
+      Skip to content
+    </a>
+    
+    <header class="relative z-1">
       <div
         class="relative max-w-screen mx-auto my-5 px-4 py-6 rounded-xl bg-primary/30 backdrop-blur-lg border-b-2 border-white/25 text-center shadow-md overflow-hidden"
       >
@@ -35,15 +111,21 @@ const { title } = Astro.props;
         >
         </div>
         <h1
-          class="relative text-4xl md:text-5xl font-heading font-bold text-accent drop-shadow-lg z-10 tracking-tight"
+          class="relative text-3xl xs:text-4xl md:text-5xl font-heading font-bold drop-shadow-lg z-10 tracking-tight"
         >
-          3 - ACSAD | Case Study Compilation
+                  <a
+            href="https://github.com/mark-siazon/Automata-Case-Studies-3-ACSAD"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline transition-colors"
+            >3 - ACSAD | Case Study Compilation</a
+          >
         </h1>
 
-        <p class="text-white text-md">
+        <p class="text-text text-sm xs:text-md">
           A collection of websites from III-ACSAD students (S.Y. 2024-2025)
           submmited to
-          <span class="text-purple-300">Prof. Lester Diampoc</span>
+          <span class="text-secondary">Prof. Lester Diampoc</span>
         </p>
       </div>
       <!-- Subtle divider -->
@@ -53,7 +135,7 @@ const { title } = Astro.props;
       </div>
     </header>
 
-    <main class="relative z-10">
+    <main id="main-content" class="relative z-10">
       <slot />
     </main>
     <footer class="relative z-1 mt-12">
@@ -72,7 +154,7 @@ const { title } = Astro.props;
             href="https://github.com/mark-siazon"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline hover:text-primary transition-colors hover:no-underline hover:text-purple-300"
+            class="underline hover:text-primary transition-colors hover:no-underline hover:text-secondary"
             >Siazon, Mark</a
           >
         </p>
@@ -105,20 +187,20 @@ const { title } = Astro.props;
   h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--color-accent);
+    color: var(--accent);
     margin-bottom: 0.5em;
   }
   h2 {
     font-size: 2rem;
     font-weight: 600;
-    color: var(--color-primary);
+    color: var(--primary);
     margin-top: 2em;
     margin-bottom: 0.5em;
   }
   h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--color-secondary);
+    color: var(--secondary);
     margin-top: 1.5em;
     margin-bottom: 0.5em;
   }
