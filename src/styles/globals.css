@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Custom screens configuration */
+@layer base {
+  @screens {
+    xs: 375px;
+  }
+}
+
 /* Define the color variables */
 :root {
   /* Base (shared) theme colors */
@@ -45,11 +52,48 @@
   --react-text: var(--color-react-text);
   --vue: var(--color-vue);
   --vue-text: var(--color-vue-text);
+
+  /* Add animation keyframes for reuse throughout the app */
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-loaded {
+  animation: fadeInUp 0.5s ease-out forwards;
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 /* Custom scrollbar for dialog */
@@ -58,19 +102,15 @@ body {
   background: transparent;
 }
 .dialog-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-accent) 100%
-  );
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   border-radius: 8px;
   opacity: 0.7;
 }
 .dialog-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     135deg,
-    var(--color-primary-hover) 0%,
-    var(--color-accent) 100%
+    var(--primary-hover) 0%,
+    var(--accent) 100%
   );
   opacity: 1;
 }
@@ -80,5 +120,5 @@ body {
 }
 .dialog-scroll {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) hsla(230, 35%, 22%, 0.2);
+  scrollbar-color: var(--primary) hsla(230, 35%, 22%, 0.2);
 }
