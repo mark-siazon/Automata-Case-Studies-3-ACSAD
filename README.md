@@ -1,6 +1,8 @@
-# III-ACSAD | Case Study Compilation
+# III-ACSAD | Automata - Case Study Compilation
 
-<img src="cover-img.webp" alt="Cover Image" width="50%" />
+<div align="center">
+  <img src="cover-img.webp" alt="Cover Image" width="80%" />
+</div>
 
 A modern Single Page Application (SPA) built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/), showcasing a collection of website case studies. Each card displays an overview, tech stack, and authors, with a focus on accessibility, modularity, and beautiful UI/UX.
 
@@ -99,3 +101,4 @@ Pull requests and suggestions are welcome! Please open an issue or submit a PR.
 ## Author
 
 - **Siazon, Mark** - [GitHub](https://github.com/marksiazon)
+- Last Modified: June 9, 2025 (✅ Fully Complete Archived) 
