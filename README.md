@@ -100,5 +100,5 @@ Pull requests and suggestions are welcome! Please open an issue or submit a PR.
 
 ## Author
 
-- **Siazon, Mark** - [GitHub](https://github.com/marksiazon)
-- Last Modified: June 9, 2025 (✅ Fully Complete Archived) 
+- **Siazon, Mark** - [GitHub](https://github.com/mark-siazon)
+- Last Modified: June 9, 2025 (✅ Fully Complete Archived)
